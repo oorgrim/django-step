@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if view.object %}
+    {{ view.object.title }}
+  {% else %}
+    Добавить новую книгу
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% if view.object %}
+      Редактирование книги: "{{ view.object.title }}"
+    {% else %}
+      Добавить новую книгу
+    {% endif %}
+  </h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+  </form>
+  <a href="{% url 'book_list' %}">Назад к списку книг</a>
+{% endblock %}

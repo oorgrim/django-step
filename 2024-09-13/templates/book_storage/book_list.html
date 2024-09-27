@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Список книг{% endblock %}
+
+{% block content %}
+<h2>Список книг</h2>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Поиск по заголовку или автору" value="{{ request.GET.q }}">
+    <button type="submit">Поиск</button>
+</form>
+
+<ul>
+    {% for book in books %}
+        <li>
+            {{ book.title }} ({{ book.author }}) 
+            <a href="{% url 'book_edit' book.id %}">Редактировать</a> |
+            <a href="{% url 'book_delete' book.id %}">Удалить</a>
+        </li>
+    {% empty %}
+        <li>Книг не найдено</li>
+    {% endfor %}
+</ul>
+{% endblock %}

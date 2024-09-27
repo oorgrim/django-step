@@ -1,0 +1,13 @@
+{% if line.fields|length == 1 and line.errors %}
+    <div class="form-group errors">
+        {% for field in line %}
+            <div class="field-{{ field.field.name }}">{{ field }}</div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="form-group">
+        {% for field in line %}
+            <div class="field-{{ field.field.name }}">{{ field }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
